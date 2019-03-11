@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}Sign Up Page{% endblock %} 
+
+{% block body %}
+<div class="jumbotron">
+    {% if registered %}
+        <h1 style="font-family: Satisfy;font-size:40px">Thank You for registering.</h1>
+    {% else %}
+
+        <h1 style="font-family: Pacifico;font-size:40px">Fill out this form.</h1><hr>
+            {% crispy user %}
+            {% csrf_token %}
+    {% endif %}        
+</div>
+{% endblock %}

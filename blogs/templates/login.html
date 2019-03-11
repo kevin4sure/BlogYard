@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block title %} Login Page {% endblock %} {% block body %}
+<div class="jumbotron">
+    <h1>Please login</h1>
+    <hr><br>
+    <form action="{% url 'login' %}" method="POST" class="form-horizontal">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <div class="">
+                    <td>
+                        <label class="col-lg-2" for="username">Username:</label>
+                    </td>
+                    <td class="col-lg-12">
+                        <input class="form-control col-lg-8" type="text" name="username" placeholder="Enter your Username">
+                    </td>
+                    
+                <!-- </div> -->
+            </tr>
+            <tr>
+                <!-- <div class="form-group"> -->
+                    <td>
+                        <label class="col-lg-2" for="password">Password:</label>
+                    </td>
+                    <td class="col-lg-12">
+                        <input class="form-control col-lg-8" type="password" name="password">
+                    </td>
+                </div>
+            </tr>
+            <tr>
+                <td></td>
+                
+                <td>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;<input class="btn btn-success col-sm-2" type="submit" value="Login">
+                    <button class="btn btn-default col-sm-2" type="reset" value="Cancel">Cancel</button>
+                    <a href="{% url 'register' %}" class="btn btn-info col-sm-2" role="button">Sign Up</a>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+</div>
+
+{% endblock %}

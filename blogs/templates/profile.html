@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}User Profile{% endblock %}
+{% block body %}
+    
+        <div class='row justify-content-md-center'>
+            {% if user_p == None %}
+            <div class='col col-sm-4'>
+                <img style="width: 200px;height:200px;padding:5px;border-radius:50%" src="{% static 'blogs/default.png' %}" alt="default profile pic"/> 
+            </div>
+            <div class='col col-sm-8'>
+                <form method="POST" id='profileForm' action="{% url 'profile' blog_user.username %}" enctype="multipart/form-data">
+                    {% crispy user_profile %} {% csrf_token %}
+                    <input type="submit" form='profileForm' name="submit_profile_details" value="Save" class="btn btn-primary btn btn-success"
+                        id="submit-id-submit_profile_details">
+                </form>
+            </div>
+            {% else %}
+            <div class='col-sm'>
+                <img style="width: 200px;height:200px;padding:5px;border-radius:50%" src="{% static '../media/blogs/' %}{{user_p.picture}}" alt="" />
+            </div>
+             
+            <div class='col-sm-8' style="padding-top: 15px">
+                <p>{{blog_user.username}}</p>
+                <p>{{blog_user.first_name}}&nbsp;{{blog_user.last_name}}</p>
+                <p>{{blog_user.email}}</p>
+                <p>{{user_p.bio}}</p>
+                <p>{{age}}</p>
+            </div>
+            
+            {% endif %}
+        </div>
+
+        <br>
+        <div class='container'>
+            <div class='row'>
+                <!-- <form class='form-group' method="POST">
+                    <label for='blog_title' class='col-form-label col-lg-2'>Title</label>
+                    <input type="text" id='blog_title' class='col-lg-8' name='title' placeholder='Enter Title of blog here...'>
+                    
+                    
+                    <input type="text" id='blog_content' class=
+                </form> -->
+
+            </div>
+        </div>
+    
+{% endblock %}

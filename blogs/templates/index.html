@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Home {% endblock %}
+{% block body %}
+{% if user.is_authenticated %}
+    <h1 style="font-family:'Anton';font-size: 34px;">{{user.username}}</h1>
+{% endif%}
+        {% if all_blogs %}
+            {% for post in all_blogs %}
+                <div class='jumbotron'>
+                  <!-- <ul> -->
+                        <p><a href="{% url 'full-blog' post.id %}" style="text-decoration: none;color:black"><h1>{{post.title}}</h1></a> </p>
+                        <p><a href="{% url 'profile' post.user %}"><h4>@{{post.user}}</h4></a></p>
+                        <p><small>{{post.post_date}}</small>&nbsp;&nbsp;<small>{{post.post_time}}</small></p>
+                        
+                  <!-- </ul>   -->
+                </div>
+            {% endfor %}
+        {% else %}
+        <h1 style="font-family: 'Satisfy';font-size: 30px">Welcome to the BlogYard.</h1>
+        {% endif %}
+    
+{% endblock %}

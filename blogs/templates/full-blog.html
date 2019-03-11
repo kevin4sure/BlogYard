@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}User Profile{% endblock %}
+{% block body %}
+
+    <div class="jumbotron">
+            <p><h1>{{post.title}}</h1></p>
+            <p><h3>@{{post.user}}</h3></p>
+            <p><h4>{{post.post_date}}&nbsp;&nbsp;{{post.post_time}}</h4></p>
+            <hr>
+            <p>
+                <h3>{{post.content}}</h3>
+            </p>
+
+
+
+    </div>
+
+
+{% endblock %}
