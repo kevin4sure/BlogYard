@@ -1,0 +1,17 @@
+Package             Version
+------------------- -------
+argon2-cffi         18.3.0 
+bcrypt              3.1.4  
+cffi                1.11.5 
+Django              2.1    
+django-crispy-forms 1.7.2  
+djangorestframework 3.8.2  
+Pillow              5.2.0  
+pip                 18.1   
+pycparser           2.19   
+python-dateutil     2.7.5  
+pytz                2018.5 
+setuptools          40.0.0 
+six                 1.11.0 
+text-unidecode      1.2    
+wheel               0.31.1 
