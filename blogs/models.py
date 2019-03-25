@@ -35,11 +35,12 @@ class BlogUser(models.Model):
         return self.user.username
 
 class Blog(models.Model):
-    user=models.ForeignKey(BlogUser,on_delete=models.CASCADE)
+    author=models.ForeignKey(BlogUser,on_delete=models.CASCADE)
     title=models.CharField(max_length=128)
     post_date=models.DateField()
     post_time=models.TimeField()
     content=models.TextField(max_length=1256)
+    picture = models.ImageField(upload_to='blog_pic')
 
 
     def __str__(self):

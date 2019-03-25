@@ -3,9 +3,18 @@
 {% block body %}
 {% if user.is_authenticated %}
     <h1 style="font-family:'Anton';font-size: 34px;">{{user.username}}</h1>
+    <div id='blogform' class="mycntainer">
+        <div class="container">
+            <form onsubmit="return false" class="form-group" method="post">
+                <img src="{{user.picture}}" width="50px" height="50px">
+            </form>    
+        </div>
+
+    </div>
 {% endif%}
         {% if all_blogs %}
             {% for post in all_blogs %}
+            <div class ="mycontainer">
                 <div class='jumbotron'>
                   <!-- <ul> -->
                         <p><a href="{% url 'full-blog' post.id %}" style="text-decoration: none;color:black"><h1>{{post.title}}</h1></a> </p>
@@ -14,9 +23,12 @@
                         
                   <!-- </ul>   -->
                 </div>
+            </div>    
             {% endfor %}
         {% else %}
-        <h1 style="font-family: 'Satisfy';font-size: 30px">Welcome to the BlogYard.</h1>
+        <div class="mycontainer">
+            <h1 style="font-family: 'Satisfy';font-size: 30px">Welcome to the BlogYard.lorem ipsum Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis hic id fuga assumenda. Ipsa, delectus! Officia facere vitae id voluptates voluptatum necessitatibus odit optio facilis, natus ipsa quas quia ea. </h1>
+        </div>
         {% endif %}
     
 {% endblock %}

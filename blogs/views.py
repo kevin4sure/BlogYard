@@ -10,7 +10,7 @@ from django.contrib import messages
 #from django.contrib import sessions
 from django.contrib.auth.models import User
 from .forms import UserForm, UserProfileForm
-from .models import Blog, BlogUser
+from .models import  BlogUser,Blog
 
 # import datetime
 # import dateutil

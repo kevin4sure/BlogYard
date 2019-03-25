@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,19 +27,28 @@
     <!-- <script src="main.js"></script> -->
     {%  block javascript %} {% endblock %}
     <style>
-        .container
+        .mycontainer
         {
             padding-left: 25px;
             padding-top:15px;
             padding-bottom: 15px;
             border-radius: 25px 25px;
-            box-shadow: 15px 15px 35px 5px #888888;
+            color:azure;
+            background-color: rgba(255, 255, 255, 0.2);
+            /* box-shadow: 15px 15px 35px 5px #888888; */
         }
-        
+        .mybody {
+            background-size: 100%;
+            background-image: url({% static 'blogs/galaxy_background.jpg' %});
+
+            align:center;
+            width:70%;
+            padding: 25px 125px; 
+        }
     </style>
 
 </head>
-<body>
+<body class=mybody>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="{% url 'index' %}"><span style="color: aqua;font-family: 'Pacifico';font-size: 30px;text-shadow: 5px 5px 10px rgb(0, 0, 0);">Blog</span><span style="color:chocolate;font-family: 'Acme';font-size: 30px;text-shadow: 5px 5px 10px rgb(0, 0, 0);">Yard</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"

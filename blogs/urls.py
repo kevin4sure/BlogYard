@@ -9,7 +9,7 @@ urlpatterns = [
     path('login/', views.LoginView, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('user special/',views.HomeView,name='home'),
-    # path('',views.BlogView.as_view(),name='blog_index'),
+    path('',views.BlogView.as_view(),name='blog_index'),
     path('profile/<slug:username>/',views.Profile,name='profile'),
 
 
