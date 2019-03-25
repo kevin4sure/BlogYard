@@ -15,4 +15,6 @@ urlpatterns = [
 
     path('read/<int:pk>/',views.FullBlogView.as_view(),name='full-blog'),
 
+    #ajax urls
+    
 ]

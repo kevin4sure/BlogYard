@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, TemplateView, DetailView, View
 from django.contrib import messages
+
 #from django.contrib import sessions
 from django.contrib.auth.models import User
 from .forms import UserForm, UserProfileForm
@@ -82,6 +83,14 @@ def LoginView(request):
             return HttpResponse("invalid login details supplied")
     else:
         return render(request,'login.html',{})
+
+
+def check_user_exists(request):
+    username= request.GET.get('username')
+    if User.objects.filter(username=username).exists():
+        error_msg= "user with the same name already exists."
+    data = {'error_msg':error_msg}
+    return  JsonResponse(data)  
 
 
 def RegisterView(request):

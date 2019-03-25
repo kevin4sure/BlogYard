@@ -3,7 +3,38 @@
 {% load crispy_forms_tags %}
 {% block title %}Sign Up Page{% endblock %} 
 
+
 {% block body %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#id_username').change(function(){
+        alert("The text has been changed.");
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: '/ajax/user_exists',
+            async: true,
+            data: {
+                username: $("#id_username").val(),
+            },
+            success: function(response)
+            {
+                var str1= response['error_msg'];
+                var str2 = "<strong style='color:red'>" + str1 + "</strong>"
+            $('#hint_id_username').html(str2);
+            
+            },
+
+            error: function ()
+            {
+            notify('Something went wrong');
+            }
+            });
+        });
+    });
+
+
+</script>
 <div class="jumbotron">
     {% if registered %}
         <h1 style="font-family: Satisfy;font-size:40px">Thank You for registering.</h1>
@@ -15,3 +46,5 @@
     {% endif %}        
 </div>
 {% endblock %}
+
+

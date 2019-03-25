@@ -24,7 +24,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blogs/',include('blogs.urls')),
      
-    path('register/',views.RegisterView,name='register')
+    path('register/',views.RegisterView,name='register'),
+
+    #ajax urls
+    path('ajax/user_exists',views.check_user_exists,name='user_exists'),
+    
 ] 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
