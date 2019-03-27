@@ -1,4 +1,9 @@
-{% extends 'base.html' %} {% block title %} Login Page {% endblock %} {% block body %}
+{% extends 'base.html' %} 
+{% block title %} Login Page {% endblock %} 
+
+
+
+{% block body %}
 <div class="jumbotron">
     <h1>Please login</h1>
     <hr><br>
@@ -42,4 +47,12 @@
 
 </div>
 
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        {% if wrong_details %}
+            alert("{{wrong_details}}");
+        {% endif %}    
+    </script>
 {% endblock %}

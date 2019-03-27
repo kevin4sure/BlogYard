@@ -84,8 +84,9 @@
         $('#id_confirm_password').change(function(){
 
             var password=$('#id_password').val();
+            var verify_pass= $('#id_confirm_password').val();
             var confirm_password= document.getElementById('id_confirm_password');
-            if (password!=$('#id_confirm_password').val()) {
+            if (password!=verify_pass) {
                 var conf_error="<strong id='conf_error' style='color:red'>password does not match.</strong>";
                 $('#id_confirm_password').val("");
                 $('#id_confirm_password').focus();

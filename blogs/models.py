@@ -37,8 +37,8 @@ class BlogUser(models.Model):
 class Blog(models.Model):
     author=models.ForeignKey(BlogUser,on_delete=models.CASCADE)
     title=models.CharField(max_length=128)
-    post_date=models.DateField()
-    post_time=models.TimeField()
+    post_date=models.DateField(default=datetime.date.today)
+    post_time=models.TimeField(default=datetime.datetime.now().time)
     content=models.TextField(max_length=1256)
     picture = models.ImageField(upload_to='blog_pic')
 
