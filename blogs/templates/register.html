@@ -7,6 +7,8 @@
 {% block body %}
 <script type="text/javascript">
     $(document).ready(function(){
+        var hint_prev_str= $("#hint_id_username").text();
+        console.log('hint_id_username:',hint_prev_str);
         $('#id_username').change(function(){
         
         $.ajax({
@@ -16,15 +18,30 @@
             async: true,
             data: {
                 username: $("#id_username").val(),
+                
             },
             success: function(response)
             {
                 var str1= response['error_msg'];
-                var str2 = "<strong style='color:red'>" + str1 + "</strong>"
-            $('#hint_id_username').html(str2);
-            
+                var usr= response['usr'];
+                if (response['usr']) {
+                    var str2 = "<strong style='color:red'><span style='color:blue'>" + usr+":</span> "+str1 + "</strong>";
+                    $('#id_username').val("");  
+                    $('#id_username').focus();
+                    $('#id_username').removeClass('is-valid');
+                    $('#id_username').addClass('is-invalid');
+                }else{
+                    $('#id_username').removeClass('is-invalid');
+                    $('#id_username').addClass('is-valid');
+                    
+                    var str2 = hint_prev_str;
+                }
+                $('#hint_id_username').html(str2);
+                
+                
+               
             },
-
+            
             error: function ()
             {
             notify('Something went wrong');
@@ -34,6 +51,55 @@
     });
 
 
+</script>
+
+
+<script>
+    function PasswordValidityCheck(){
+        var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        var password_element = document.getElementById('id_password');
+        $('#id_password').change(function(){
+            var password=$('#id_password').val();
+            if (!regularExpression.test(password)) {
+                var password_error = "<strong id='password_error'  style='color:red'>password should contain atleast one digit, one Capital alphabet, and these [!@#$%^&*] symbols.</strong>";
+                $('#id_password').val("");
+                password_element.focus();
+                $('#id_password').removeClass('is-valid');
+                $('#id_password').addClass('is-invalid');
+            }else{
+                var password_error = "";
+                $('#id_password').removeClass('is-invalid');
+                $('#id_password').addClass('is-valid');
+            }
+            $('#password_error').text("");
+            password_element.insertAdjacentHTML('afterend',password_error);
+        });
+    }
+</script>
+
+
+<script>
+    $(document).ready(function(){
+        PasswordValidityCheck();
+        $('#id_confirm_password').change(function(){
+
+            var password=$('#id_password').val();
+            var confirm_password= document.getElementById('id_confirm_password');
+            if (password!=$('#id_confirm_password').val()) {
+                var conf_error="<strong id='conf_error' style='color:red'>password does not match.</strong>";
+                $('#id_confirm_password').val("");
+                $('#id_confirm_password').focus();
+                $('#id_confirm_password').removeClass('is-valid');
+                $('#id_confirm_password').addClass('is-invalid');
+            } else {
+                var conf_error = "";
+                $('#id_confirm_password').removeClass('is-invalid');
+                $('#id_confirm_password').addClass('is-valid');
+            }
+            $('#conf_error').text("");
+            confirm_password.insertAdjacentHTML('afterend',conf_error);
+        });
+    });
 </script>
 <div class="jumbotron">
     {% if registered %}

@@ -80,7 +80,8 @@ def LoginView(request):
         else:
             print("someone tried to login and failed")
             print("Username: {} and Password: {}".format(username, password))
-            return HttpResponse("invalid login details supplied")
+            
+            return render(request,'login.html',{'wrong_details':'invalid login details supplied'})
     else:
         return render(request,'login.html',{})
 
@@ -89,7 +90,11 @@ def check_user_exists(request):
     username= request.GET.get('username')
     if User.objects.filter(username=username).exists():
         error_msg= "user with the same name already exists."
-    data = {'error_msg':error_msg}
+        usr= username
+    else:
+        error_msg= ""
+        usr=""
+    data = {'error_msg':error_msg,'usr':usr}
     return  JsonResponse(data)  
 
 

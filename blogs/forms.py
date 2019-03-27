@@ -18,9 +18,11 @@ class UserForm(forms.ModelForm):
     helper.form_action = 'register'
 
     helper.add_input(Submit('submit_user_details','Sign Up',css_class='btn btn-success'))
-    
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model=User
+        
         fields= ('username','first_name','last_name','email','password')
 
 
